@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test HTML Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .counter-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .counter-display {
+            font-size: 3em;
+            color: #667eea;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .toggle-section {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            margin: 0 15px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #667eea;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .status-text {
+            margin-top: 15px;
+            font-size: 1.2em;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .color-box {
+            width: 100%;
+            height: 100px;
+            border-radius: 10px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #999;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Test HTML Page</h1>
+        <p class="subtitle">Interactive components for testing</p>
+
+        <div class="card">
+            <h2>Welcome Card</h2>
+            <p>This is a sample card component with hover effects. Hover over it to see the animation!</p>
+        </div>
+
+        <div class="counter-section">
+            <h2>Counter</h2>
+            <div class="counter-display" id="counter">0</div>
+            <div class="button-group">
+                <button onclick="decrement()">- Decrement</button>
+                <button onclick="reset()">Reset</button>
+                <button onclick="increment()">Increment +</button>
+            </div>
+        </div>
+
+        <div class="toggle-section">
+            <h2>Toggle Switch</h2>
+            <label class="toggle-switch">
+                <input type="checkbox" id="toggle" onchange="handleToggle()">
+                <span class="slider"></span>
+            </label>
+            <div class="status-text" id="status">Status: OFF</div>
+        </div>
+
+        <div class="card">
+            <h2>Color Changer</h2>
+            <p>Click the button below to change the color!</p>
+            <div class="color-box" id="colorBox">Click to change color</div>
+            <div class="button-group">
+                <button onclick="changeColor()">Change Color</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Created for testing purposes • All in one HTML file</p>
+        </div>
+    </div>
+
+    <script>
+        let counter = 0;
+        const colors = [
+            '#667eea', '#764ba2', '#f093fb', '#4facfe', 
+            '#43e97b', '#fa709a', '#fee140', '#30cfd0'
+        ];
+        let colorIndex = 0;
+
+        function increment() {
+            counter++;
+            updateCounter();
+        }
+
+        function decrement() {
+            counter--;
+            updateCounter();
+        }
+
+        function reset() {
+            counter = 0;
+            updateCounter();
+        }
+
+        function updateCounter() {
+            const counterElement = document.getElementById('counter');
+            counterElement.textContent = counter;
+            counterElement.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                counterElement.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        function handleToggle() {
+            const toggle = document.getElementById('toggle');
+            const status = document.getElementById('status');
+            if (toggle.checked) {
+                status.textContent = 'Status: ON';
+                status.style.color = '#43e97b';
+            } else {
+                status.textContent = 'Status: OFF';
+                status.style.color = '#333';
+            }
+        }
+
+        function changeColor() {
+            const colorBox = document.getElementById('colorBox');
+            colorIndex = (colorIndex + 1) % colors.length;
+            colorBox.style.backgroundColor = colors[colorIndex];
+            colorBox.textContent = `Color: ${colors[colorIndex]}`;
+        }
+
+        // Initialize color box
+        document.getElementById('colorBox').addEventListener('click', changeColor);
+        changeColor(); // Set initial color
+    </script>
+</body>
+</html>
